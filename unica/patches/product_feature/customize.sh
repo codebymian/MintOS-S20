@@ -181,6 +181,13 @@ if [[ "$(GET_FP_SENSOR_TYPE "$SOURCE_FP_SENSOR_CONFIG")" != "$(GET_FP_SENSOR_TYP
     LOG_STEP_OUT
 fi
 
+if [[ "$TARGET_DISPLAY_CUTOUT_TYPE" == "right" ]]; then
+    LOG_STEP_IN "- Applying right cutout patch"
+    APPLY_PATCH "system_ext" "priv-app/SystemUI/SystemUI.apk" "$SRC_DIR/unica/patches/product_feature/cutout/SystemUI.apk/0001-Add-right-cutout-support.patch"
+    LOG_STEP_OUT
+fi
+
+
 if [[ "$(GET_FP_SENSOR_TYPE "$TARGET_FP_SENSOR_CONFIG")" == "optical" ]]; then
     LOG "- Adding Ultrasonic FOD Animation"
 

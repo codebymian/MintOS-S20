@@ -31,7 +31,7 @@ etc/dpolicy
 # Samsung SIM Unlock
 SYSTEM_DEBLOAT+="
 system/bin/ssud
-system/etc/init/ssu_dm1qxxx.rc
+system/etc/init/ssu_$(GET_PROP "system" "ro.product.system.name").rc
 system/etc/init/ssu.rc
 system/etc/permissions/privapp-permissions-com.samsung.ssu.xml
 system/etc/sysconfig/samsungsimunlock.xml
@@ -48,7 +48,7 @@ fi
 
 if [[ "$TARGET_SINGLE_SYSTEM_IMAGE" = "qssi" ]]; then
     SYSTEM_DEBLOAT+="
-    system/etc/init/ssu_dm1qxxx.rc
+    system/etc/init/ssu_dm3qxxx.rc
     "
 fi
 
@@ -70,6 +70,7 @@ app/Maps
 app/YouTube
 overlay/GmsConfigOverlaySearchSelector.apk
 priv-app/Messages
+priv-app/Velvet
 priv-app/SearchSelector
 "
 

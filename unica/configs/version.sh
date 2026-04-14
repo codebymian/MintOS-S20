@@ -26,4 +26,4 @@ ROM_VERSION+="-$(git rev-parse --short HEAD)"
 # - 1.x.x: Diamond (S23)
 # - 2.x.x: Eureka (S24)
 # - 3.x.x: Paradigm (S25)
-ROM_CODENAME="Paradigm"
+ROM_CODENAME="Diamond"
