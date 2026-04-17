@@ -30,15 +30,6 @@ if ! $SOURCE_HAS_SPEN; then
         ADD_TO_WORK_DIR "b0qxxx" "system" "system/priv-app/AirCommand/AirCommand.apk" 0 0 644 "u:object_r:system_file:s0"
         ADD_TO_WORK_DIR "b0qxxx" "system" "system/priv-app/AirReadingGlass/AirReadingGlass.apk" 0 0 644 "u:object_r:system_file:s0"
         ADD_TO_WORK_DIR "b0qxxx" "system" "system/priv-app/SmartEye/SmartEye.apk" 0 0 644 "u:object_r:system_file:s0"
-    else
-        LOG "\033[0;33m! Nothing to do\033[0m"
-    fi
 else
-    if ! $TARGET_HAS_SPEN; then
-        LOG "\033[0;33m! Target has no SPEN, skipping SPEN patch\033[0m"
-    fi
+    LOG "- SPen support not detected in target device. Ignoring."
 fi
-
-
-
-unset SOURCE_FIRMWARE_PATH TARGET_FIRMWARE_PATH SOURCE_HAS_SPEN TARGET_HAS_SPEN

@@ -10,3 +10,17 @@ ADD_TO_WORK_DIR "pa1qxxx" "system" "system/etc/sysconfig/samsungsmartsuggestions
 SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_COMMON_CONFIG_AI_VERSION" "20253"
 SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_PERSONALIZED_DATA_CORE" "TRUE"
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Adding Audio Eraser"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/fastScanner.tflite" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/lib64/libmediasndk.mediacore.samsung.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/lib64/libmediasndk.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/audio_ae_intervals.conf" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/audio_effects.xml" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/audio_effects_common.conf" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/lib64/libmultisourceseparator.so"  0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/lib64/libmultisourceseparator.audio.samsung.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/public.libraries-audio.samsung.txt" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/public.libraries-secinput.samsung.txt" 0 0 644 "u:object_r:system_file:s0"
+SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_AUDIO_CONFIG_MULTISOURCE_SEPARATOR" "{FastScanning_6, SourceSeparator_4, Version_1.3.0}"
+LOG_STEP_OUT

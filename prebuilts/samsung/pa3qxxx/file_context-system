@@ -2082,6 +2082,8 @@
 /system/etc/protection_list\.xml u:object_r:system_file:s0
 /system/etc/protolog\.conf\.json\.gz u:object_r:system_file:s0
 /system/etc/public\.libraries-arcsoft\.txt u:object_r:system_file:s0
+/system/etc/public\.libraries-audio\.samsung\.txt u:object_r:system_file:s0
+/system/etc/public\.libraries-secinput\.samsung\.txt u:object_r:system_file:s0
 /system/etc/public\.libraries-audiomirroring\.samsung\.txt u:object_r:system_file:s0
 /system/etc/public\.libraries-camera\.samsung\.txt u:object_r:system_file:s0
 /system/etc/public\.libraries-crypto\.samsung\.txt u:object_r:system_file:s0
@@ -4068,6 +4070,7 @@
 /system/lib64/libmtp\.so u:object_r:system_lib_file:s0
 /system/lib64/libmultirecord\.so u:object_r:system_lib_file:s0
 /system/lib64/libmultisourceseparator\.so u:object_r:system_lib_file:s0
+/system/lib64/libmultisourceseparator\.audio\.samsung\.so u:object_r:system_lib_file:s0
 /system/lib64/libnativebridge_lazy\.so u:object_r:system_lib_file:s0
 /system/lib64/libnativecfms\.so u:object_r:system_lib_file:s0
 /system/lib64/libnativedisplay\.so u:object_r:system_lib_file:s0

@@ -53,11 +53,6 @@ else
     if [ "$TARGET_HAS_UWB" = true ]; then
         LOG "\033[0;32m+ Applying UWB patch\033[0m"
         # ... patch logic here ...
-    else
-        LOG "\033[0;33m! Target has no UWB, skipping...\033[0m"
-    fi
 else
-    LOG "\033[0;33m! Nothing to do\033[0m"
+    LOG "- Target has no UWB. Ignoring."
 fi
-
-unset SOURCE_FIRMWARE_PATH TARGET_FIRMWARE_PATH SOURCE_HAS_UWB TARGET_HAS_UWB
