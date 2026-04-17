@@ -45,14 +45,15 @@ if ! $SOURCE_HAS_UWB; then
             "framework/org.carconnectivity.android.digitalkey.timesync.jar" 0 0 644 "u:object_r:system_file:s0"
         ADD_TO_WORK_DIR "b0qxxx" "system_ext" \
             "priv-app/DckTimeSyncService/DckTimeSyncService.apk" 0 0 644 "u:object_r:system_file:s0"
+        # ... ADD_TO_WORK_DIR calls ...
     else
         LOG "\033[0;33m! Nothing to do\033[0m"
     fi
 else
-    if [ "$SOURCE_HAS_UWB" = true ]; then
-    if [ "$TARGET_HAS_UWB" = true ]; then
+    if [[ "$SOURCE_HAS_UWB" == "true" && "$TARGET_HAS_UWB" == "true" ]]; then
         LOG "\033[0;32m+ Applying UWB patch\033[0m"
         # ... patch logic here ...
-else
-    LOG "- Target has no UWB. Ignoring."
+    else
+        LOG "- Target has no UWB. Ignoring."
+    fi
 fi
