@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# Device configuration file for Galaxy S20+  (Qualcomm) (y2q)
+# Device configuration file for Galaxy S20 Ultra  (Qualcomm) (z3q)
 TARGET_NAME="Galaxy S20 ULTRA  (Qualcomm)"
 TARGET_CODENAME="z3q"
 TARGET_FIRMWARE="SM-G988N/KOO/357107761234568"
