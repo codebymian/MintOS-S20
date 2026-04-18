@@ -137,6 +137,17 @@ if $BUILD_ROM; then
 
     if [ -d "$APKTOOL_DIR" ]; then
         LOG_STEP_IN true "Building APKs/JARs"
+		
+	    # ============================================================
+        # Arka_Core Hook by GhasemzadehFard-Dev
+        # ============================================================
+        if [ -f "./arka_core/master_patcher.sh" ]; then
+        echo ">> [ARKA_CORE] Master Patcher found! Executing..."
+        bash "$SRC_DIR/arka_core/master_patcher.sh"
+    else
+        echo ">> [ARKA_CORE] WARNING: Master Patcher not found. Skipping..."
+        fi
+       # ============================================================
 
         while IFS= read -r f; do
             f="${f/$APKTOOL_DIR\//}"
