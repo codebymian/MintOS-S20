@@ -12,8 +12,8 @@ ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.vibrator-V3-nd
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding a73xqxx light blobs"
-ADD_TO_WORK_DIR "a73xqxx" "vendor" "bin/hw/vendor.samsung.hardware.light-service"
-ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.light-V1-ndk_platform.so"
+ADD_TO_WORK_DIR "dm3qxxx" "vendor" "bin/hw/vendor.samsung.hardware.light-service"
+ADD_TO_WORK_DIR "dm3qxxx" "vendor" "lib64/vendor.samsung.hardware.light-V1-ndk_platform.so"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding a73xqxx MIDAS"
@@ -43,7 +43,7 @@ ADD_TO_WORK_DIR "r9qxxx" "system" "system/lib/libremotedisplayservice.so" 0 0 64
 ADD_TO_WORK_DIR "r9qxxx" "system" "system/lib/libsecuibc.so" 0 0 644 "u:object_r:system_lib_file:s0"
 ADD_TO_WORK_DIR "r9qxxx" "system" "system/lib/libstagefright_hdcp.so" 0 0 644 "u:object_r:system_lib_file:s0"
 ADD_TO_WORK_DIR "r9qxxx" "system" "system/lib/wfd_log.so" 0 0 644 "u:object_r:system_lib_file:s0"
-ADD_TO_WORK_DIR "a52qnsxx" "vendor" "bin/hw/wpa_supplicant" 0 2000 755 "u:object_r:hal_wifi_supplicant_default_exec:s0"
+ADD_TO_WORK_DIR "dm3qxxx" "vendor" "bin/hw/wpa_supplicant" 0 2000 755 "u:object_r:hal_wifi_supplicant_default_exec:s0"
 
 echo "Fix MIDAS model detection"
 sed -i "s/ro.product.device/ro.product.vendor.device/g" "$WORK_DIR/vendor/etc/midas/midas_config.json"
@@ -103,3 +103,13 @@ done
 SET_PROP "vendor" "ro.vendor.uwb.feature.chipname" "sr100"
 LOG_STEP_OUT
 
+LOG_STEP_IN "- Added Wlan blobs with r8qxxx"
+ADD_TO_WORK_DIR "r8qxxx" "vendor" "firmware/wlan" 0 0 755 "u:object_r:vendor_file:s0"
+ADD_TO_WORK_DIR "r8qxxx" "vendor" "firmware/qca6390" 0 0 755 "u:object_r:vendor_file:s0"
+ADD_TO_WORK_DIR "r8qxxx" "vendor" "firmware/wifi" 0 0 755 "u:object_r:vendor_file:s0"
+LOG_STEP_OUT
+
+LOG_STEP_IN "- Replacing singletake blobs with dm3qxxx"
+DELETE_FROM_WORK_DIR "vendor" "etc/singletake"
+ADD_TO_WORK_DIR "dm3qxxx" "vendor" "etc/singletake" 0 0 755 "u:object_r:vendor_file:s0"
+LOG_STEP_OUT

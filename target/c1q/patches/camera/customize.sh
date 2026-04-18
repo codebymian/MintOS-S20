@@ -4,6 +4,8 @@ if ! grep -q "Camera End" "$WORK_DIR/vendor/ueventd.rc"; then
     echo -e "\n" >> "$WORK_DIR/vendor/ueventd.rc"
     cat "$SRC_DIR/target/c1q/patches/camera/ueventd" >> "$WORK_DIR/vendor/ueventd.rc"
 fi
+DELETE_FROM_WORK_DIR "system" "system/cameradata/camera-feature.xml"
+ADD_TO_WORK_DIR "dm3qxxx" "system" "system/cameradata/camera-feature.xml" 0 0 644 "u:object_r:system_file:s0"
 
 # Fix system camera libs
 BLOBS_LIST="
