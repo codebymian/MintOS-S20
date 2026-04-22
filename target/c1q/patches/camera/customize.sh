@@ -4,8 +4,16 @@ if ! grep -q "Camera End" "$WORK_DIR/vendor/ueventd.rc"; then
     echo -e "\n" >> "$WORK_DIR/vendor/ueventd.rc"
     cat "$SRC_DIR/target/c1q/patches/camera/ueventd" >> "$WORK_DIR/vendor/ueventd.rc"
 fi
+
+LOG_STEP_IN "- Replacing cameradata blobs with stock"
+DELETE_FROM_WORK_DIR "system" "system/cameradata"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE_PATH" "system" "system/cameradata" 0 0 755 "u:object_r:system_file:s0"
+LOG_STEP_OUT
+
 DELETE_FROM_WORK_DIR "system" "system/cameradata/camera-feature.xml"
 ADD_TO_WORK_DIR "dm3qxxx" "system" "system/cameradata/camera-feature.xml" 0 0 644 "u:object_r:system_file:s0"
+
+
 
 # Fix system camera libs
 BLOBS_LIST="
@@ -115,3 +123,4 @@ SET_METADATA "system" "system/cameradata/portrait_data/unica_bokeh_feature.json"
 sed -i \
     's/system\/cameradata\/portrait_data\/single_bokeh_feature.json/system\/cameradata\/portrait_data\/unica_bokeh_feature.json\x00/g' \
     "$WORK_DIR/system/system/lib64/libPortraitSolution.camera.samsung.so"
+

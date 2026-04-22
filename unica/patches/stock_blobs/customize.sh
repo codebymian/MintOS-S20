@@ -62,11 +62,6 @@ DELETE_FROM_WORK_DIR "system" "system/saiv/textrecognition"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE_PATH" "system" "system/saiv/textrecognition" 0 0 755 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Replacing cameradata blobs with stock"
-DELETE_FROM_WORK_DIR "system" "system/cameradata"
-ADD_TO_WORK_DIR "$TARGET_FIRMWARE_PATH" "system" "system/cameradata" 0 0 755 "u:object_r:system_file:s0"
-LOG_STEP_OUT
-
 if [ -f "$TARGET_FIRMWARE_PATH/system/system/usr/share/alsa/alsa.conf" ]; then
     LOG_STEP_IN "- Add stock alsa.conf"
     ADD_TO_WORK_DIR "$TARGET_FIRMWARE_PATH" "system" "system/usr/share/alsa/alsa.conf" 0 0 644 "u:object_r:system_file:s0"
