@@ -7,11 +7,30 @@ fi
 
 LOG_STEP_IN "- Replacing cameradata blobs with stock"
 DELETE_FROM_WORK_DIR "system" "system/cameradata"
-ADD_TO_WORK_DIR "$TARGET_FIRMWARE_PATH" "system" "system/cameradata" 0 0 755 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "y2qxxx" "system" "system/cameradata" 0 0 755 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
+LOG_STEP_IN "- Replacing camerafeature.xml blobs with stock"
 DELETE_FROM_WORK_DIR "system" "system/cameradata/camera-feature.xml"
 ADD_TO_WORK_DIR "c2qxxx" "system" "system/cameradata/camera-feature.xml" 0 0 644 "u:object_r:system_file:s0"
+LOG_STEP_OUT
+
+if [[ "$TARGET_CODENAME" == "c1q" || "$TARGET_CODENAME" == "c2q" ]]; then
+    BLOBS_LIST="
+    system/lib64/libofi_seva.so
+    system/lib64/libofi_klm.so
+    system/lib64/libofi_plugin.so
+    system/lib64/libofi_rt_framework_user.so
+    system/lib64/libofi_service_interface.so
+    system/lib64/libofi_gc.so
+    system/lib64/vendor.samsung_slsi.hardware.ofi@2.0.so
+    system/lib64/vendor.samsung_slsi.hardware.ofi@2.1.so
+    "
+    for blob in $BLOBS_LIST
+    do
+        ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0" &
+    done
+fi
 
 # Fix system camera libs
 BLOBS_LIST="
