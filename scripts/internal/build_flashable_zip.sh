@@ -29,10 +29,10 @@ TMP_DIR="$OUT_DIR/zip"
 ZIP_FILE_SUFFIX="-sign.zip"
 ! $ROM_IS_OFFICIAL && ZIP_FILE_SUFFIX=".zip"
 
-ZIP_FILE_NAME="Astro_OS_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
+ZIP_FILE_NAME="AstroOS_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
 while [ -f "$OUT_DIR/$ZIP_FILE_NAME" ]; do
     INCREMENTAL=$((INCREMENTAL + 1))
-    ZIP_FILE_NAME="Astro_OS_${ROM_VERSION}_$(date +%Y%m%d)-${INCREMENTAL}_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
+    ZIP_FILE_NAME="AstroOS_${ROM_VERSION}_$(date +%Y%m%d)-${INCREMENTAL}_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
 done
 
 PRIVATE_KEY_PATH="$SRC_DIR/security/"
@@ -492,7 +492,6 @@ PRINT_HEADER()
     for i in $(seq 1 "$SIDE_PADDING"); do
         echo -n ' '
     done
-}
     echo -n "$VERSION_INFO"
     echo    '");'
     echo    'ui_print(" ");'
