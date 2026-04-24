@@ -29,10 +29,10 @@ TMP_DIR="$OUT_DIR/zip"
 ZIP_FILE_SUFFIX="-sign.zip"
 ! $ROM_IS_OFFICIAL && ZIP_FILE_SUFFIX=".zip"
 
-ZIP_FILE_NAME="MintOS_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
+ZIP_FILE_NAME="Astro_OS_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
 while [ -f "$OUT_DIR/$ZIP_FILE_NAME" ]; do
     INCREMENTAL=$((INCREMENTAL + 1))
-    ZIP_FILE_NAME="MintOS_${ROM_VERSION}_$(date +%Y%m%d)-${INCREMENTAL}_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
+    ZIP_FILE_NAME="Astro_OS_${ROM_VERSION}_$(date +%Y%m%d)-${INCREMENTAL}_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
 done
 
 PRIVATE_KEY_PATH="$SRC_DIR/security/"
@@ -483,15 +483,16 @@ PRINT_HEADER()
 
     echo    'ui_print("                                                            ");'
     echo    'ui_print("                                          ");'
-    echo    'ui_print(" m    m   i             m     mmmm   mmmm ");'
-    echo    'ui_print(" ##  ## mmm    m mm   mm#mm  m    m #    ");'
-    echo    'ui_print(" # ## #   #    #   #    #    #    #  #mmm ");'
-    echo    'ui_print(" #    #   #    #   #    #    #    #      #");'
-    echo    'ui_print(" #    # mm#mm  #   #     mm   #mm#   mmm# ");'
+    echo    'ui_print("   AAA   SSSSS TTTTT RRRR   OOO   ");'
+    echo    'ui_print("  A   A  S       T   R   R O   O  ");'
+    echo    'ui_print("  AAAAA  SSSSS   T   RRRR  O   O  ");'
+    echo    'ui_print("  A   A      S   T   R  R  O   O  ");'
+    echo    'ui_print("  A   A  SSSSS   T   R   R  OOO   ");'
     echo -n 'ui_print("'
     for i in $(seq 1 "$SIDE_PADDING"); do
         echo -n ' '
     done
+}
     echo -n "$VERSION_INFO"
     echo    '");'
     echo    'ui_print(" ");'
