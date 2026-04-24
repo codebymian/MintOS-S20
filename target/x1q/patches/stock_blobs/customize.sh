@@ -7,6 +7,21 @@ sed -i 's/manifest version="8\.0"/manifest version="9.0"/' "$WORK_DIR/system/sys
 sed -i 's/manifest version="8\.0"/manifest version="9.0"/' "$WORK_DIR/system/system/system_ext/etc/vintf/manifest.xml"
 LOG_STEP_OUT
 
+# S20 Series -> SoundBooster 1050
+LOG_STEP_IN "- Replacing SoundBooster"
+DELETE_FROM_WORK_DIR "system" "system/lib64/lib_SoundBooster_ver1100.so"
+DELETE_FROM_WORK_DIR "system" "system/lib64/lib_SAG_EQ_ver1100.so"
+DELETE_FROM_WORK_DIR "system" "system/lib64/libsoundboostereq_legacy.so"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib64/lib_SoundBooster_ver1050.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib64/libsamsungSoundbooster_plus_legacy.so" 0 0 644 "u:object_r:system_lib_file:s0"
+LOG_STEP_OUT
+
+if [[ "$TARGET_CODENAME" == "x1q" || "$TARGET_CODENAME" == "y2q" || "$TARGET_CODENAME" == "z3q" ]]; then
+    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/priv-app/LedBackCoverAppHubble/LedBackCoverAppHubble.apk" 0 0 644 "u:object_r:system_file:s0"
+    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/etc/permissions/privapp-permissions-com.samsung.android.app.ledbackcover.xml" 0 0 644 "u:object_r:system_file:s0"
+fi
+LOG_STEP_OUT
+
 DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.sec.feature.cover.clearcameraviewcover.xml"
 DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.sec.feature.cover.flip.xml"
 DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.sec.feature.pocketsensitivitymode_level1.xml"
