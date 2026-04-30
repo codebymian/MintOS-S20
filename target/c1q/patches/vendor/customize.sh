@@ -74,11 +74,6 @@ elif [[ "$TARGET_CODENAME" == "c2q" ]]; then
 fi
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Added Wlan blobs with r8qxxx"
-ADD_TO_WORK_DIR "r8qxxx" "vendor" "firmware/wlan" 0 0 755 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "r8qxxx" "vendor" "firmware/qca6390" 0 0 755 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "r8qxxx" "vendor" "firmware/wifi" 0 0 755 "u:object_r:vendor_file:s0"
-LOG_STEP_OUT
 
 LOG_STEP_IN "- Replacing singletake blobs with dm3qxxx"
 DELETE_FROM_WORK_DIR "vendor" "etc/singletake"
