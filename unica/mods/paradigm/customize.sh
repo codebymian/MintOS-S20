@@ -103,19 +103,15 @@ ADD_TO_WORK_DIR "$([[ "$TARGET_OS_SINGLE_SYSTEM_IMAGE" == "mssi" ]] && echo "gts
 SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_AUDIO_CONFIG_MULTISOURCE_SEPARATOR" "{FastScanning_6, SourceSeparator_4, Version_1.3.0}"
 LOG_STEP_OUT
 
-# Now brief
-# Requires SEC_FLOATING_FEATURE_COMMON_CONFIG_AI_VERSION >= 20251
-# or SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_AI_BRIEF_FOR_UT
-LOG_STEP_IN "- Adding Now brief feature"
-ADD_TO_WORK_DIR "pa2qxxx" "system" \
-    "system/etc/default-permissions/default-permissions-com.samsung.android.app.moments.xml" 0 0 644 "u:object_r:system_file:s0"
-ADD_TO_WORK_DIR "pa2qxxx" "system" \
-    "system/etc/permissions/privapp-permissions-com.samsung.android.app.moments.xml" 0 0 644 "u:object_r:system_file:s0"
-ADD_TO_WORK_DIR "pa2qxxx" "system" \
-    "system/etc/sysconfig/moments.xml" 0 0 644 "u:object_r:system_file:s0"
-ADD_TO_WORK_DIR "pa2qxxx" "system" "system/priv-app/Moments/Moments.apk" 0 0 644 "u:object_r:system_file:s0"
-LOG "- Downloading Smart suggestions app with full-global-release flavor"
-DOWNLOAD_FILE "$(GET_GALAXY_STORE_DOWNLOAD_URL "com.samsung.android.smartsuggestions")" \
-    "$WORK_DIR/system/system/priv-app/SamsungSmartSuggestions/SamsungSmartSuggestions.apk"
+LOG_STEP_IN "- Adding Now Brief"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/priv-app/SamsungSmartSuggestions/SamsungSmartSuggestions.apk" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/priv-app/Moments/Moments.apk" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/permissions/privapp-permissions-com.samsung.android.app.moments.xml" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/default-permissions/default-permissions-com.samsung.android.app.moments.xml" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/sysconfig/moments.xml" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/permissions/privapp-permissions-com.samsung.android.smartsuggestions.xml" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa3qxxx" "system" "system/etc/default-permissions/default-permissions-com.samsung.android.smartsuggestions.xml" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "system/etc/sysconfig/samsungsmartsuggestions.xml" 0 0 644 "u:object_r:system_file:s0"
+SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_COMMON_CONFIG_AI_VERSION" "20253"
 SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_PERSONALIZED_DATA_CORE" "TRUE"
 LOG_STEP_OUT
