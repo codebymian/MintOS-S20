@@ -62,3 +62,10 @@ LOG_STEP_IN "- Replacing singletake blobs with dm3qxxx"
 DELETE_FROM_WORK_DIR "vendor" "etc/singletake"
 ADD_TO_WORK_DIR "dm3qxxx" "vendor" "etc/singletake" 0 0 755 "u:object_r:vendor_file:s0"
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Removing configstore-1.1 service"
+DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.configstore@1.1-service"
+DELETE_FROM_WORK_DIR "vendor" "etc/init/android.hardware.configstore@1.1-service.rc"
+DELETE_FROM_WORK_DIR "vendor" "etc/seccomp_policy/configstore@1.1.policy"
+LOG_STEP_OUT
+
