@@ -30,6 +30,7 @@ PRODUCT_DEBLOAT+="
 overlay/SoftapOverlay6GHz
 overlay/SoftapOverlayDualAp
 overlay/SoftapOverlayOWE
+overlay/framework-res__dm3qxxx__auto_generated_rro_product.apk
 "
 
 # mAFPC
@@ -58,6 +59,7 @@ system/priv-app/VideoScan
 # Apps debloat
 SYSTEM_DEBLOAT+="
 system/priv-app/SohService
+system/app/Rampart
 "
 
 # system_ext clean-up

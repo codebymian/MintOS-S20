@@ -30,6 +30,7 @@ PRODUCT_DEBLOAT+="
 overlay/SoftapOverlay6GHz
 overlay/SoftapOverlayDualAp
 overlay/SoftapOverlayOWE
+overlay/framework-res__dm3qxxx__auto_generated_rro_product.apk
 "
 
 # mAFPC
@@ -106,6 +107,7 @@ system/priv-app/AirCommand
 system/priv-app/AirGlance
 system/priv-app/AirReadingGlass
 system/priv-app/SmartEye
+system/app/Rampart
 "
 SYSTEM_DEBLOAT+="
 system/etc/default-permissions/default-permissions-com.samsung.android.service.aircommand.xml

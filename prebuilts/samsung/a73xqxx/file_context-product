@@ -207,7 +207,7 @@
 /product/overlay/TeleService__nosdcard__auto_generated_characteristics_rro\.apk u:object_r:system_file:s0
 /product/overlay/TransparentNavigationBar u:object_r:system_file:s0
 /product/overlay/TransparentNavigationBar/TransparentNavigationBarOverlay\.apk u:object_r:system_file:s0
-/product/overlay/framework-res__a73xqxx__auto_generated_rro_product\.apk u:object_r:system_file:s0
+/product/overlay/framework-res__auto_generated_rro_product\.apk u:object_r:system_file:s0
 /product/priv-app u:object_r:system_file:s0
 /product/priv-app/AndroidAutoStub u:object_r:system_file:s0
 /product/priv-app/AndroidAutoStub/AndroidAutoStub\.apk u:object_r:system_file:s0
