@@ -62,7 +62,6 @@ done
 echo "Add stock camera libs"
 BLOBS_LIST="
 system/etc/public.libraries-arcsoft.txt
-system/etc/public.libraries-camera.samsung.txt
 system/lib64/libAiSolution_wrapper_v1.camera.samsung.so
 system/lib64/libBright_core.camera.samsung.so
 system/lib64/libFacePreProcessing.camera.samsung.so
@@ -90,8 +89,6 @@ system/lib64/liblow_light_hdr.arcsoft.so
 system/lib64/libsaiv_HprFace_cmh_support_jni.camera.samsung.so
 system/lib64/libsuperresolution.arcsoft.so
 system/lib64/libsuperresolution_wrapper_v2.camera.samsung.so
-system/lib64/libSwIsp_core.camera.samsung.so
-system/lib64/libSwIsp_wrapper_v1.camera.samsung.so
 system/lib64/libtensorflowLite.dynamic_viewing.camera.samsung.so
 system/lib64/libtensorflowlite_jni_r2.6.so
 "
