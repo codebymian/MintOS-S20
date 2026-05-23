@@ -54,23 +54,11 @@ sed -i "/keyrefuge/d" "$WORK_DIR/vendor/etc/fstab.qcom"
 
 
 LOG_STEP_IN "- Setting Adaptive HFR flags"
-if [[ "$TARGET_CODENAME" != "c1q" && "$TARGET_CODENAME" != "c2q" ]]; then
-    SET_PROP "vendor" "debug.sf.show_refresh_rate_overlay_render_rate" "true"
-    SET_PROP "vendor" "ro.surface_flinger.game_default_frame_rate_override" "60"
-    SET_PROP "vendor" "ro.surface_flinger.use_content_detection_for_refresh_rate" "true"
-    SET_PROP "vendor" "ro.surface_flinger.set_idle_timer_ms" "250"
-    SET_PROP "vendor" "ro.surface_flinger.set_touch_timer_ms" "300"
-    SET_PROP "vendor" "ro.surface_flinger.set_display_power_timer_ms" "200"
-    SET_PROP "vendor" "ro.surface_flinger.enable_frame_rate_override" "true"
-elif [[ "$TARGET_CODENAME" == "c1q" ]]; then
+if [[ "$TARGET_CODENAME" != "c1q" ]]; then
     SET_PROP "vendor" "debug.sf.show_refresh_rate_overlay_render_rate" "true"
     SET_PROP "vendor" "ro.surface_flinger.game_default_frame_rate_override" "60"
     SET_PROP "vendor" "ro.surface_flinger.use_content_detection_for_refresh_rate" "false"
     SET_PROP "vendor" "ro.surface_flinger.enable_frame_rate_override" "false"
-elif [[ "$TARGET_CODENAME" == "c2q" ]]; then
-    SET_PROP "vendor" "debug.sf.show_refresh_rate_overlay_render_rate" "true"
-    SET_PROP "vendor" "ro.surface_flinger.game_default_frame_rate_override" "60"
-    SET_PROP "vendor" "ro.surface_flinger.enable_frame_rate_override" "true"
 fi
 LOG_STEP_OUT
 
@@ -89,5 +77,14 @@ LOG_STEP_IN "- Removing configstore-1.1 service"
 DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.configstore@1.1-service"
 DELETE_FROM_WORK_DIR "vendor" "etc/init/android.hardware.configstore@1.1-service.rc"
 DELETE_FROM_WORK_DIR "vendor" "etc/seccomp_policy/configstore@1.1.policy"
+LOG_STEP_OUT
+
+LOG_STEP_IN "- Adding FBE v2 support"
+for fstab in "$WORK_DIR/vendor/etc/fstab."*; do
+    [ -e "$fstab" ] || continue
+    sed -i '\|/dev/block/bootdevice/by-name/userdata|c\
+/dev/block/bootdevice/by-name/userdata                 /data                  f2fs    noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt    latemount,wait,check,fileencryption=ice,quota,reservedsize=128M,checkpoint=fs' \
+    "$fstab"
+done
 LOG_STEP_OUT
 
