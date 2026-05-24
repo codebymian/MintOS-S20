@@ -23,12 +23,6 @@ LOG_STEP_IN "- Add stock framwork Overlay"
 ADD_TO_WORK_DIR "a73xqxx" "product" "overlay/framework-res__auto_generated_rro_product.apk" 0 0 644 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
-if [[ "$TARGET_CODENAME" == "c1q" || "$TARGET_CODENAME" == "c2q" || "$TARGET_CODENAME" == "z3q" ]]; then
-    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/priv-app/LedBackCoverAppHubble/LedBackCoverAppHubble.apk" 0 0 644 "u:object_r:system_file:s0"
-    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/etc/permissions/privapp-permissions-com.samsung.android.app.ledbackcover.xml" 0 0 644 "u:object_r:system_file:s0"
-fi
-LOG_STEP_OUT
-
 LOG_STEP_IN "- Add AirCommand"
 ADD_TO_WORK_DIR "a73xqxx" "system" "system/priv-app/AirCommand/AirCommand.apk" 0 0 644 "u:object_r:system_file:s0"
 LOG_STEP_OUT

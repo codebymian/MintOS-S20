@@ -104,7 +104,7 @@ priv-app/com.qualcomm.qti.services.systemhelper
 # Spen Debloat
 SYSTEM_DEBLOAT+="
 system/priv-app/AirCommand
-system/priv-app/AirGlance
+system/app/AirGlance
 system/priv-app/AirReadingGlass
 system/priv-app/SmartEye
 system/app/Rampart
