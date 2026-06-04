@@ -17,7 +17,7 @@
 
 VERSION_MAJOR=3
 VERSION_MINOR=0
-VERSION_PATCH=7
+VERSION_PATCH=8
 ROM_VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
 # Append current commit hash to version name
 ROM_VERSION+="-$(git rev-parse --short HEAD)"
