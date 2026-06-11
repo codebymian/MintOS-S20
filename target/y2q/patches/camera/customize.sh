@@ -79,21 +79,13 @@ system/lib64/libHpr_RecGAE_cvFeature_v1.0.camera.samsung.so
 system/lib64/libHpr_TaskFaceClustering_hierarchical_v1.0.camera.samsung.so
 system/lib64/libImageCropper.camera.samsung.so
 system/lib64/libImageTagger.camera.samsung.so
-system/lib64/libMultiFrameProcessing30.camera.samsung.so
-system/lib64/libMultiFrameProcessing30.snapwrapper.camera.samsung.so
-system/lib64/libMultiFrameProcessing30Tuning.camera.samsung.so
 system/lib64/libPortraitDistortionCorrection.arcsoft.so
 system/lib64/libPortraitDistortionCorrectionCali.arcsoft.so
 system/lib64/libUltraWideDistortionCorrection.camera.samsung.so
 system/lib64/libWideDistortionCorrection.camera.samsung.so
-system/lib64/libhigh_dynamic_range.arcsoft.so
-system/lib64/libhigh_res.arcsoft.so
 system/lib64/libhumantracking_util.camera.samsung.so
 system/lib64/libhumantracking.arcsoft.so
-system/lib64/liblow_light_hdr.arcsoft.so
 system/lib64/libsaiv_HprFace_cmh_support_jni.camera.samsung.so
-system/lib64/libsuperresolution.arcsoft.so
-system/lib64/libsuperresolution_wrapper_v2.camera.samsung.so
 system/lib64/libtensorflowLite.dynamic_viewing.camera.samsung.so
 system/lib64/libtensorflowlite_jni_r2.6.so
 "
@@ -101,23 +93,6 @@ for blob in $BLOBS_LIST
 do
     ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0"
 done
-{
-    echo "libLttEngine.camera.samsung.so"
-} >> "$WORK_DIR/system/system/etc/public.libraries-camera.samsung.txt"
-
-LOG_STEP_IN "- Fixing Studio Video Editor"
-ADD_TO_WORK_DIR "a36xqnaxx" "system" "system/lib64/libMyFilter.camera.samsung.so" 0 0 644 "u:object_r:system_file:s0"
-ADD_TO_WORK_DIR "a36xqnaxx" "system" "system/lib64/libtflite2.myfilters.camera.samsung.so" 0 0 644 "u:object_r:system_file:s0"
-LOG_STEP_OUT
-
-echo "Fix AI Photo Editor"
-cp -a --preserve=all \
-    "$TARGET_FIRMWARE_PATH/system/system/cameradata/portrait_data/single_bokeh_feature.json" \
-    "$WORK_DIR/system/system/cameradata/portrait_data/unica_bokeh_feature.json"
-SET_METADATA "system" "system/cameradata/portrait_data/unica_bokeh_feature.json" 0 0 644 "u:object_r:system_file:s0"
-sed -i \
-    's/system\/cameradata\/portrait_data\/single_bokeh_feature.json/system\/cameradata\/portrait_data\/unica_bokeh_feature.json\x00/g' \
-    "$WORK_DIR/system/system/lib64/libPortraitSolution.camera.samsung.so"
 
 LOG_STEP_IN "- Replacing camera blobs"
 BLOBS_LIST="
@@ -125,7 +100,6 @@ system/lib64/libenn_wrapper_system.so
 system/lib64/libpic_best.arcsoft.so
 system/lib64/libarcsoft_dualcam_portraitlighting.so
 system/lib64/libdualcam_refocus_gallery_54.so
-
 system/lib64/libhybrid_high_dynamic_range.arcsoft.so
 system/lib64/libae_bracket_hdr.arcsoft.so
 system/lib64/libface_recognition.arcsoft.so
@@ -139,27 +113,18 @@ done
 # shellcheck disable=SC2046
 wait $(jobs -p) || exit 1
 
+
 BLOBS_LIST="
-system/lib64/libPortraitDistortionCorrectionCali.arcsoft.so
-system/lib64/libMultiFrameProcessing20.camera.samsung.so
-system/lib64/libMultiFrameProcessing20Core.camera.samsung.so
-system/lib64/libMultiFrameProcessing20Day.camera.samsung.so
-system/lib64/libMultiFrameProcessing20Tuning.camera.samsung.so
 system/lib64/libMultiFrameProcessing30.camera.samsung.so
 system/lib64/libMultiFrameProcessing30.snapwrapper.camera.samsung.so
 system/lib64/libMultiFrameProcessing30Tuning.camera.samsung.so
-system/lib64/libGeoTrans10.so
-system/lib64/vendor.samsung_slsi.hardware.geoTransService@1.0.so
-system/lib64/libSwIsp_core.camera.samsung.so
-system/lib64/libSwIsp_wrapper_v1.camera.samsung.so
 "
 for blob in $BLOBS_LIST
 do
-    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0" &
+    ADD_TO_WORK_DIR "a73xxx" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0" &
 done
 
 BLOBS_LIST="
-system/lib64/libeden_wrapper_system.so
 system/lib64/libhigh_dynamic_range.arcsoft.so
 system/lib64/liblow_light_hdr.arcsoft.so
 system/lib64/libhigh_res.arcsoft.so
