@@ -2,7 +2,7 @@ TARGET_FIRMWARE_PATH="$FW_DIR/$(echo -n "$TARGET_FIRMWARE" | sed 's./._.g' | rev
 
 if ! grep -q "Camera End" "$WORK_DIR/vendor/ueventd.rc"; then
     echo -e "\n" >> "$WORK_DIR/vendor/ueventd.rc"
-    cat "$SRC_DIR/target/y2q/patches/camera/ueventd" >> "$WORK_DIR/vendor/ueventd.rc"
+    cat "$SRC_DIR/target/x1q/patches/camera/ueventd" >> "$WORK_DIR/vendor/ueventd.rc"
 fi
 
 LOG_STEP_IN "- Replacing cameradata blobs with stock"
