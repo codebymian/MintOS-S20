@@ -1,2 +1,0 @@
-on post-fs-data
-    setprop vendor.voip.volume.idx 7

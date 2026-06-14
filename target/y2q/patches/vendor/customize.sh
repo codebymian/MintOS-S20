@@ -48,7 +48,6 @@ sed -i "/keydata/d" "$WORK_DIR/vendor/etc/fstab.qcom"
 sed -i "/keyrefuge/d" "$WORK_DIR/vendor/etc/fstab.qcom"
 
 LOG_STEP_IN "- Setting Adaptive HFR flags"
-if [[ "$TARGET_CODENAME" != "x1q" && "$TARGET_CODENAME" != "y2q" && "$TARGET_CODENAME" != "z3q" ]]; then
     SET_PROP "vendor" "debug.sf.show_refresh_rate_overlay_render_rate" "true"
     SET_PROP "vendor" "ro.surface_flinger.game_default_frame_rate_override" "60"
     SET_PROP "vendor" "ro.surface_flinger.use_content_detection_for_refresh_rate" "true"
@@ -56,7 +55,6 @@ if [[ "$TARGET_CODENAME" != "x1q" && "$TARGET_CODENAME" != "y2q" && "$TARGET_COD
     SET_PROP "vendor" "ro.surface_flinger.set_touch_timer_ms" "300"
     SET_PROP "vendor" "ro.surface_flinger.set_display_power_timer_ms" "200"
     SET_PROP "vendor" "ro.surface_flinger.enable_frame_rate_override" "true"
-fi
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Enabling Vulkan"
