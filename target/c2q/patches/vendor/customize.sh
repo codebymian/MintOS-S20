@@ -21,11 +21,6 @@ DELETE_FROM_WORK_DIR "vendor" "etc/midas"
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "etc/midas"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Fixing MIDAS model detection"
-sed -i "s/a73xq/c1q/g" "$WORK_DIR/vendor/etc/midas/midas_config.json"
-sed -i "s/ro.product.device/ro.product.vendor.device/g" "$WORK_DIR/vendor/etc/midas/midas_config.json"
-LOG_STEP_OUT
-
 DELETE_FROM_WORK_DIR "system" "system/lib64/libhdcp_client_aidl.so"
 DELETE_FROM_WORK_DIR "system" "system/lib64/libhdcp2.so"
 DELETE_FROM_WORK_DIR "system" "system/lib64/libremotedisplay_wfd.so"
@@ -54,7 +49,6 @@ sed -i "/keyrefuge/d" "$WORK_DIR/vendor/etc/fstab.qcom"
 
 
 LOG_STEP_IN "- Setting Adaptive HFR flags"
-if [[ "$TARGET_CODENAME" != "c1q" && "$TARGET_CODENAME" != "c2q" ]]; then
     SET_PROP "vendor" "debug.sf.show_refresh_rate_overlay_render_rate" "true"
     SET_PROP "vendor" "ro.surface_flinger.game_default_frame_rate_override" "60"
     SET_PROP "vendor" "ro.surface_flinger.use_content_detection_for_refresh_rate" "true"
@@ -62,12 +56,10 @@ if [[ "$TARGET_CODENAME" != "c1q" && "$TARGET_CODENAME" != "c2q" ]]; then
     SET_PROP "vendor" "ro.surface_flinger.set_touch_timer_ms" "300"
     SET_PROP "vendor" "ro.surface_flinger.set_display_power_timer_ms" "200"
     SET_PROP "vendor" "ro.surface_flinger.enable_frame_rate_override" "true"
-fi
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Enabling Vulkan"
 SET_PROP "vendor" "ro.hwui.use_vulkan" "true"
-SET_PROP "vendor" "debug.hwui.use_hint_manager" "true"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Updating UWB HAL"
@@ -106,10 +98,16 @@ DELETE_FROM_WORK_DIR "vendor" "etc/seccomp_policy/configstore@1.1.policy"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding FBE v2 support"
-for fstab in "$WORK_DIR/vendor/etc/fstab."*; do
-    [ -e "$fstab" ] || continue
-    sed -i '\|/dev/block/bootdevice/by-name/userdata|c\
-/dev/block/bootdevice/by-name/userdata                 /data                  f2fs    noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt    latemount,wait,check,fileencryption=ice,quota,reservedsize=128M,checkpoint=fs' \
-    "$fstab"
-done
+sed -i '\|/dev/block/bootdevice/by-name/userdata|c\
+/dev/block/bootdevice/by-name/userdata                 /data                  f2fs    noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt    latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,quota,reservedsize=128M,checkpoint=fs' \
+"$WORK_DIR/vendor/etc/fstab.qcom"
+LOG_STEP_OUT
+
+LOG_STEP_IN "- Remove Samsung Encryption"
+sed -i -E \
+    's/^([^#].*?)fileencryption=[^,]*(.*)$/# &\n\1encryptable\2/' \
+    "$WORK_DIR/vendor/etc/fstab.qcom"
+sed -i -E \
+    's/^([^#].*?)forceencrypt=[^,]*(.*)$/# &\n\1encryptable\2/' \
+    "$WORK_DIR/vendor/etc/fstab.qcom"
 LOG_STEP_OUT
